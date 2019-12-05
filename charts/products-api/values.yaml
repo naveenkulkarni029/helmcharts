@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: https://hub.docker.com/repository/docker/naveenkulkarni029/products-api
+  repository: naveenkulkarni029/products-api
   tag: latest
   pullPolicy: Always
 
