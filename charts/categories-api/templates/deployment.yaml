@@ -24,6 +24,12 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env: 
+            - name: envName
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "categories-api.fullname" . }}-configmap
+                  key: envName
           ports:
             - name: http
               containerPort: 8080
