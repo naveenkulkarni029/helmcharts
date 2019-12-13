@@ -23,6 +23,8 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ["java"]
+          args: ["-Dspring.profiles.active={{ .Values.activeProfile }}", "-jar","products-api-1.0.0-SNAPSHOT.jar"]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
