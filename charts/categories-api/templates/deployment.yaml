@@ -24,12 +24,8 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env: 
-            - name: envName
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ include "categories-api.fullname" . }}-configmap
-                  key: envName
+          command: ["java"]
+          args: ["-Dspring.profiles.active={{ .Values.activeProfile }}", "-jar","categories-api-1.0.0-SNAPSHOT.jar"]
           ports:
             - name: http
               containerPort: 8080
